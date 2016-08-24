@@ -251,6 +251,17 @@ func (s *UDPSession) LocalAddr() net.Addr { return s.local }
 // RemoteAddr returns the remote network address. The Addr returned is shared by all invocations of RemoteAddr, so do not modify it.
 func (s *UDPSession) RemoteAddr() net.Addr { return s.remote }
 
+// SetBlock
+func (s *UDPSession) SetBlock(block BlockCrypt) {
+	s.block = block
+}
+
+// Established
+
+func (s *UDPSession) Established() bool {
+	return s.block != nil
+}
+
 // SetDeadline sets the deadline associated with the listener. A zero time value disables the deadline.
 func (s *UDPSession) SetDeadline(t time.Time) error {
 	s.mu.Lock()
